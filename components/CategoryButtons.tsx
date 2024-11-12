@@ -2,11 +2,19 @@ import Colors from "@/constants/Colors"
 import { destinationCategories } from "@/data/categories"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import React, { useRef, useState } from "react"
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  TextInput,
+} from "react-native"
 
 const CategoryButtons = () => {
   const itemRef = useRef<Array<View | null>>([])
   const [activeIndex, setActiveIndex] = useState(0)
+  const [height, setHeight] = useState<number | undefined>(undefined)
   const handleSelectCategory = (index: number) => {
     setActiveIndex(index)
   }
@@ -45,6 +53,17 @@ const CategoryButtons = () => {
           </Pressable>
         ))}
       </ScrollView>
+      <View>
+        <TextInput
+          style={styles.inputTextStyles}
+          placeholder="Testing growInHeight"
+          onContentSizeChange={(event) => {
+            setHeight(event.nativeEvent.contentSize.height)
+          }}
+          multiline
+          maxLength={500}
+        />
+      </View>
     </View>
   )
 }
@@ -88,5 +107,13 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontWeight: "400",
     marginLeft: 8,
+  },
+  inputTextStyles: {
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: Colors.white,
+    borderRadius: 5,
+    marginBottom: 10,
+    width: "95%",
   },
 })
