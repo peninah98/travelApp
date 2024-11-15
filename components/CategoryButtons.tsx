@@ -60,8 +60,9 @@ const CategoryButtons = () => {
           onContentSizeChange={(event) => {
             setHeight(event.nativeEvent.contentSize.height)
           }}
+    
           multiline
-          maxLength={500}
+          // maxLength={500}
         />
       </View>
     </View>
